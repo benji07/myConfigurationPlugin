@@ -21,6 +21,24 @@ class ChoiceConfigField extends AbstractConfigField{
   
   public function getWidget(){
     
+    if(!is_array($this->options['choices'])){
+      $v = trim($this->options['choices'],'%');
+      
+      list($class, $property) = explode('::',$v);
+      
+      $choices = array();
+      if(rtrim($property,'()') != $property){
+        $choices = call_user_func(array($class, rtrim($property,'()')));
+      }
+      else{
+        $rClass = new ReflectionClass($class);
+        $choices = $rClass->getProperty(ltrim($property,'$'))->getValue();  
+      }
+      
+      $this->options['choices'] = $choices;
+    }
+    
+    
    return new sfWidgetFormChoice($this->getWidgetOptions()); 
   }
   
@@ -29,6 +47,18 @@ class ChoiceConfigField extends AbstractConfigField{
     $voptions = $this->getValidatorOptions();
     
     if(isset($voptions['choices'])){
+      if(!is_array($this->options['choices'])){
+        $choices = array();
+        if(rtrim($property,'()') != $property){
+          // call a static method to getting choices list
+          $choices = call_user_func(array($class, rtrim($property,'()')));
+        }
+        else{
+          // retreive a class property
+          $rClass = new ReflectionClass($class);
+          $choices = $rClass->getProperty(ltrim($property,'$'))->getValue();  
+        }
+      }
       $voptions['choices'] = array_keys($voptions['choices']);
     }
     

@@ -1,14 +1,17 @@
 <div id="sf_admin_container">
   <h1>Configuration de l'application</h1>
 
-<?php if ($sf_user->hasFlash('notice')): ?>
-  <div class="notice"><?php echo $sf_user->getFlash('notice') ?></div>
-<?php endif; ?>
+  <?php if ($sf_user->hasFlash('notice')): ?>
+    <div class="notice"><?php echo $sf_user->getFlash('notice') ?></div>
+  <?php endif; ?>
+  
+  <?php if ($sf_user->hasFlash('error')): ?>
+    <div class="error"><?php echo $sf_user->getFlash('error') ?></div>
+  <?php endif; ?>
 
-<?php if ($sf_user->hasFlash('error')): ?>
-  <div class="error"><?php echo $sf_user->getFlash('error') ?></div>
-<?php endif; ?>
-
+  <?php if(count($fields) == 0):?>
+    <div class="error">No configuration fields, you must defined it in the config/params.yml file</div>
+  <?php endif?>  
 
   <div id="sf_admin_header"></div>
 
