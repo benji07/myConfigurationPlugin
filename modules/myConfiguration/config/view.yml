@@ -1,0 +1,2 @@
+indexSuccess:
+  stylesheets: [/sfDoctrinePlugin/css/global.css, /sfDoctrinePlugin/css/default.css]

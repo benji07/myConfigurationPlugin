@@ -27,11 +27,11 @@ class ChoiceConfigField extends AbstractConfigField{
   public function getValidator(){
     
     $voptions = $this->getValidatorOptions();
-    var_dump($voptions['choices']);
+    
     if(isset($voptions['choices'])){
       $voptions['choices'] = array_keys($voptions['choices']);
     }
-    var_dump($voptions['choices']);
+    
     return new sfValidatorChoice($voptions, $this->getValidatorMessages());
   }
 }
