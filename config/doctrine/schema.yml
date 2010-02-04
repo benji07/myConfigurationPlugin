@@ -1,0 +1,14 @@
+Params:
+  options:
+    collate: utf8_unicode_ci
+    charset: utf8
+    symfony:
+      filter: false
+      form: false
+  columns:
+    space:
+      type: string(50)
+    name:
+      type: string(50)
+    value:
+      type: string

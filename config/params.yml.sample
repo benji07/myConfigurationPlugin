@@ -1,0 +1,21 @@
+# mettre un exemple pour chaque type de champs
+blog:
+  title:
+    type: text
+    default: My blog title
+    options:
+      label: Titre du blog
+  description:
+    type: textarea
+    options:
+      label: Description du blog
+  theme:
+    type: choice
+    default: {}
+    options:
+      multiple: true
+      expanded: true
+      choices:
+        0: Default
+        1: Custom
+        2: Other
